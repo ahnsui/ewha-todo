@@ -32,7 +32,7 @@ const Header = () => {
         </div>
       </div>
       <div className="w-16">
-        <img alt="rocket" src="../src/assets/Emoji.png" />
+        <img alt="rocket" src="/Emoji.png" />
       </div>
     </div>
   );
