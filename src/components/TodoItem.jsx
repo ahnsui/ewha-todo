@@ -14,7 +14,7 @@ const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
           className="w-5 h-5"
           type="checkbox"
         />
-        <div className="text-lg">{content}</div>
+        <div className="text-base">{content}</div>
       </div>
       <div className="text-gray-600">{date}</div>
       <button
