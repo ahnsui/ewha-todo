@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
 import { getDate } from "./utils/getDate";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const mockData = [
   {
@@ -23,12 +23,24 @@ const mockData = [
 
 function App() {
   const [todos, setTodos] = useState(mockData);
+  const idRef = useRef(3);
+
   console.log(todos);
+
+  const onCreate = (content) => {
+    const newData = {
+      id: idRef.current++,
+      isDone: false,
+      content: content,
+      date: getDate(new Date()),
+    };
+    setTodos([newData, ...todos]); // 스프레드 연산자
+  };
   return (
     <div className="flex flex-col gap-10 w-96 mx-auto my-0 font-sans">
       <Header />
-      <Editor />
-      <List />
+      <Editor onCreate={onCreate} />
+      <List todos={todos} />
     </div>
   );
 }
