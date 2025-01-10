@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
 import "./App.css";
-import { getDate } from "./utils/getDate";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
+import { getDate } from "./utils/getDate";
+import { useState, useRef } from "react";
 
 const mockData = [
   {
