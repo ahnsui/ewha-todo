@@ -41,11 +41,19 @@ function App() {
     };
     setTodos([newData, ...todos]);
   };
+
+  const onUpdate = (targetId) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
+  };
   return (
     <div className="flex flex-col gap-10 w-96 mx-auto my-0 font-sans">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} />
+      <List todos={todos} onUpdate={onUpdate} />
     </div>
   );
 }
