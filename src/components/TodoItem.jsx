@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const TodoItem = ({ todo }) => {
   return (
     <div className="flex items-center justify-between h-8 text-sm">
@@ -13,6 +15,9 @@ const TodoItem = ({ todo }) => {
       </div>
     </div>
   );
+};
+TodoItem.propTypes = {
+  todo: PropTypes.array.isRequired,
 };
 
 export default TodoItem;
