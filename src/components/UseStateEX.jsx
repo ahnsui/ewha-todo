@@ -1,21 +1,21 @@
 import { useState } from "react";
 
-const UseStateEX = () => {
+const UseStateEx = () => {
   const [count, setCount] = useState(0);
+  console.log(count);
 
   return (
     <>
       <button
-        className="bg-black text-white"
         onClick={() => {
           setCount(count + 1);
         }}
+        className="bg-black text-white"
       >
         증가
       </button>
-      <h1>{count}</h1>
     </>
   );
 };
 
-export default UseStateEX;
+export default UseStateEx;
