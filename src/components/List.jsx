@@ -1,45 +1,39 @@
 import TodoItem from "./TodoItem";
+import PropTypes from "prop-types";
 import { useState } from "react";
 
-const List = ({ todos, onUpdate, onDelete }) => {
+const List = ({ todos, onUpdate }) => {
   const [search, setSearch] = useState("");
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
   };
   console.log(search);
 
-  const getFilterdList = () => {
+  const getFilteredList = () => {
     if (search === "") return todos;
     return todos.filter((todo) =>
       todo.content.toLowerCase().includes(search.toLowerCase())
     );
   };
-
-  const filteredTodos = getFilterdList();
+  const filteredTodos = getFilteredList();
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold">Todo List</h1>
       <input
-        className="w-full border rounded p-2 h-7 text-xs"
+        className="w-full border rounded p-2 h-7 text-xss"
         placeholder="검색할 todo를 입력해주세요."
         value={search}
         onChange={onChangeSearch}
       />
-      <div className="flex flex-col gap-4">
-        {filteredTodos.map((todo) => {
-          return (
-            <TodoItem
-              key={todo.id}
-              {...todo}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-            />
-          );
-        })}
-      </div>
+      {filteredTodos.map((todo) => {
+        return <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />;
+      })}
     </div>
   );
+};
+List.propTypes = {
+  todos: PropTypes.array.isRequired,
 };
 
 export default List;

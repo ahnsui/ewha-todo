@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import PropTypes from "prop-types";
 
 const Editor = ({ onCreate }) => {
   const [content, setContent] = useState("");
@@ -15,7 +16,6 @@ const Editor = ({ onCreate }) => {
       return;
     }
     onCreate(content);
-    setContent("");
   };
 
   const onKeyDown = (e) => {
@@ -25,7 +25,7 @@ const Editor = ({ onCreate }) => {
   };
 
   return (
-    <div className="flex justify-between h-24 pb-16 border-b text-xs">
+    <div className="flex justify-between h-24 pb-16 border-b text-sm">
       <input
         className="w-9/12 border rounded p-2"
         placeholder="추가할 todo를 입력해주세요."
@@ -42,6 +42,10 @@ const Editor = ({ onCreate }) => {
       </button>
     </div>
   );
+};
+
+Editor.propTypes = {
+  onCreate: PropTypes.func.isRequired,
 };
 
 export default Editor;
