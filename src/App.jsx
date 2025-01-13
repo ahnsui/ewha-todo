@@ -58,11 +58,15 @@ function App() {
     );
   };
 
+  const onDelete = (targetId) => {
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
+
   return (
     <div className="flex flex-col gap-10 w-96 mx-auto my-0 font-sans">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
