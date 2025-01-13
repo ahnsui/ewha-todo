@@ -13,6 +13,7 @@ const TodoItem = ({ todo, onUpdate }) => {
           onChange={onChangeCheckbox}
           checked={todo.isDone}
         />
+
         <div className="text-lg">{todo.content}</div>
       </div>
       <div className="flex items-center gap-2">
@@ -27,5 +28,6 @@ const TodoItem = ({ todo, onUpdate }) => {
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
 };
+
 
 export default TodoItem;

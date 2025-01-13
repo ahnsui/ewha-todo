@@ -28,10 +28,12 @@ const List = ({ todos, onUpdate }) => {
       />
       {filteredTodos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} onUpdate={onUpdate} />; // 스프레드 연산자 ...
+
       })}
     </div>
   );
 };
+
 List.propTypes = {
   todos: PropTypes.array.isRequired,
 };
