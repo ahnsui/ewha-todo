@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 const List = ({ todos, onUpdate }) => {
+
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {
@@ -28,6 +29,7 @@ const List = ({ todos, onUpdate }) => {
       />
       {filteredTodos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} onUpdate={onUpdate} />; // 스프레드 연산자 ...
+
       })}
     </div>
   );
@@ -35,6 +37,7 @@ const List = ({ todos, onUpdate }) => {
 List.propTypes = {
   todos: PropTypes.array.isRequired,
   onUpdate: PropTypes.func.isRequired,
+
 };
 
 export default List;
