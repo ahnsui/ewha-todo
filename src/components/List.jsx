@@ -2,7 +2,7 @@ import TodoItem from "./TodoItem";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const List = ({ todos, onUpdate }) => {
+const List = ({ todos, onUpdate, onDelete }) => {
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {
@@ -27,13 +27,15 @@ const List = ({ todos, onUpdate }) => {
         placeholder="검색할 todo를 입력해주세요."
       />
       {filteredTodos.map((todo) => {
-        return <TodoItem key={todo.id} todo={todo} onUpdate={onUpdate} />; // 스프레드 연산자 ...
+        return <TodoItem key={todo.id} todo={todo} onUpdate={onUpdate} onDelete={onDelete} />; // 스프레드 연산자 ...
       })}
     </div>
   );
 };
 List.propTypes = {
   todos: PropTypes.array.isRequired,
+  onUpdate :PropTypes.func.isRequired,
+  onDelete :PropTypes.func.isRequired,
 };
 
 export default List;
