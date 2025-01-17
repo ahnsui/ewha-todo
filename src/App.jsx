@@ -3,30 +3,27 @@ import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
 import { getDate } from "./utils/getDate";
-import { useState, useRef } from "react";
-
-const mockData = [
-  {
-    id: 0,
-    isDone: false,
-    content: "React 공부하기",
-    date: getDate(new Date()),
-  },
-  { id: 1, isDone: false, content: "빨래하기", date: getDate(new Date()) },
-  {
-    id: 2,
-    isDone: false,
-    content: "노래 연습하기",
-    date: getDate(new Date()),
-  },
-];
+import { useState, useRef, useEffect } from "react";
 
 function App() {
-  const [todos, setTodos] = useState(mockData);
-  const idRef = useRef(3);
+  const [todos, setTodos] = useState();
+  const idRef = useRef(0);
+
+  useEffect(()=>{
+    const storedData = localStorage.getItem("todos");
+    if(storedData){
+      const parsedData = JSON.parse(storedData);
+      setTodos(parsedData);
+      idRef.current = Math.max(0,...parsedData.map((todo)=>todo.id))+1;
+    }
+  },[]);
+
+  useEffect(()=>{
+    localStorage.setItem("todos",JSON.stringify(todos));
+  },[todos]);
 
   console.log(todos);
-
+  
   const onCreate = (content) => {
     const newData = {
       id: idRef.current++,
