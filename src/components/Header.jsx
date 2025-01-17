@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getDate } from "../utils/getDate";
 import axios from "axios";
 
@@ -8,19 +8,17 @@ const Header = () => {
   const today = new Date();
   const [weather, setWeather] = useState(""); //weather는 이미지 url
 
-  useEffect(() => {
-    axios
-      .get(URL)
-      .then((response) => {
-        const weatherIcon = response.data.weather[0].icon; //50d
-        const weatherIConAdrs = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-        setWeather(weatherIConAdrs);
-        console.log(weather);
-      })
-      .catch((err) => {
-        console.log("발생한 오류: ", err);
-      });
-  }, [URL, weather]);
+  axios
+    .get(URL)
+    .then((response) => {
+      const weatherIcon = response.data.weather[0].icon; //50d
+      const weatherIConAdrs = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+      setWeather(weatherIConAdrs);
+      console.log(weather);
+    })
+    .catch((err) => {
+      console.log("발생한 오류: ", err);
+    });
 
   return (
     <div className="flex justify-between mt-14">

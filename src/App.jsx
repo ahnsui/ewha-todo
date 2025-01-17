@@ -9,7 +9,6 @@ function App() {
   const [todos, setTodos] = useState([]);
   const idRef = useRef(0);
 
-
   useEffect(() => {
     const storedData = localStorage.getItem("todos");
     if (storedData) {
@@ -18,7 +17,6 @@ function App() {
       idRef.current = Math.max(0, ...parsedData.map((todo) => todo.id)) + 1;
     }
   }, []);
-  
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
