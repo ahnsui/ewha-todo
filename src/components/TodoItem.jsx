@@ -1,3 +1,9 @@
+import PropTypes from "prop-types";
+
+const TodoItem = ({ todo, onUpdate }) => {
+  const onChangeCheckbox = () => {
+    onUpdate(todo.id);
+  };
 
 import PropTypes from "prop-types";
 
