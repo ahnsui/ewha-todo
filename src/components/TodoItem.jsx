@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 
 const TodoItem = ({ todo, onUpdate, onDelete }) => {
