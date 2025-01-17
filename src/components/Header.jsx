@@ -7,7 +7,6 @@ const Header = () => {
   const URL = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}`;
   const today = new Date();
   const [weather, setWeather] = useState(""); //weather는 이미지 url
-
   useEffect(() => {
     axios
       .get(URL)
@@ -22,6 +21,7 @@ const Header = () => {
         console.log("발생한 오류: ", err);
       });
   },[URL]);
+
   return (
     <div className="flex justify-between mt-14">
       <div className="flex flex-col text-2xl font-semibold">
