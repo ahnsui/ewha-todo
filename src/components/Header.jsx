@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getDate } from "../utils/getDate";
 import axios from "axios";
 
@@ -7,18 +7,20 @@ const Header = () => {
   const URL = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}`;
   const today = new Date();
   const [weather, setWeather] = useState(""); //weather는 이미지 url
-
-  axios
-    .get(URL)
-    .then((response) => {
-      const weatherIcon = response.data.weather[0].icon; //50d
-      const weatherIConAdrs = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-      setWeather(weatherIConAdrs);
-      console.log(weather);
-    })
-    .catch((err) => {
-      console.log("발생한 오류: ", err);
-    });
+  useEffect(() => {
+    axios
+      .get(URL)
+      .then((response) => {
+        console.log(response.data);
+        const weatherIcon = response.data.weather[0].icon; //50d
+        const weatherIConAdrs = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+      
+        setWeather(weatherIConAdrs);
+      })
+      .catch((err) => {
+        console.log("발생한 오류: ", err);
+      });
+  },[URL]);
 
   return (
     <div className="flex justify-between mt-14">
