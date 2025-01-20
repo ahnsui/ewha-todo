@@ -4,6 +4,9 @@ import Editor from "./components/Editor";
 import List from "./components/List";
 import { getDate } from "./utils/getDate";
 import { useState, useRef, useEffect } from "react";
+import { createContext } from "react";
+
+export const TodoContext = createContext();
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -60,8 +63,10 @@ function App() {
   return (
     <div className="flex flex-col gap-10 w-96 mx-auto my-0 font-sans">
       <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
+        <Editor />
+        <List />
+      </TodoContext.Provider>
     </div>
   );
 }
