@@ -1,8 +1,14 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { TodoContext } from "../App";
 
-const TodoItem = ({ todo, onUpdate }) => {
+const TodoItem = ({ todo }) => {
+  const { onUpdate, onDelete } = useContext(TodoContext);
   const onChangeCheckbox = () => {
     onUpdate(todo.id);
+  };
+  const onClickDelete = () => {
+    onDelete(todo.id);
   };
 
 import PropTypes from "prop-types";
