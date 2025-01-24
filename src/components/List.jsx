@@ -4,6 +4,7 @@ import { TodoContext } from "../App";
 
 const List = () => {
   const { todos } = useContext(TodoContext);
+
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {
@@ -19,9 +20,10 @@ const List = () => {
   const filteredTodos = getFilteredList();
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold">Todo List</h1>
       <input
+
         value={search}
         onChange={onChangeSearch}
         className="w-full border rounded p-2 h-7 text-xs"
@@ -29,9 +31,13 @@ const List = () => {
       />
       {filteredTodos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} />; // 스프레드 연산자 ...
+
       })}
     </div>
   );
+};
+List.propTypes = {
+  todos: PropTypes.array.isRequired,
 };
 
 export default List;

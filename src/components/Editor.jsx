@@ -45,4 +45,8 @@ const Editor = () => {
   );
 };
 
+Editor.propTypes = {
+  onCreate: PropTypes.func.isRequired,
+};
+
 export default Editor;

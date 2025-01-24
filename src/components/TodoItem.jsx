@@ -4,6 +4,7 @@ import { TodoContext } from "../App";
 
 const TodoItem = ({ todo }) => {
   const { onUpdate, onDelete } = useContext(TodoContext);
+
   const onChangeCheckbox = () => {
     onUpdate(todo.id);
   };
@@ -30,11 +31,13 @@ const TodoItem = ({ todo }) => {
           삭제
         </button>
       </div>
+
     </div>
   );
 };
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
+
 };
 
 export default TodoItem;

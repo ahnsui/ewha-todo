@@ -26,7 +26,7 @@ const Header = () => {
     <div className="flex justify-between mt-14">
       <div className="flex flex-col text-2xl font-semibold">
         <h1>{getDate(today)}</h1>
-        <div className="flex items-center">
+        <div className="flex">
           <h1>오늘의 날씨</h1>
           <h1>
             <img alt="weatherIcon" src={weather} className="w-14 h-14" />
