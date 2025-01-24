@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
-import PropTypes from "prop-types";
+import { useState, useRef, useContext } from "react";
+import { TodoContext } from "../App";
 
-const Editor = ({ onCreate }) => {
+const Editor = () => {
+  const { onCreate } = useContext(TodoContext);
   const [content, setContent] = useState("");
   const contentRef = useRef();
 
@@ -27,25 +28,21 @@ const Editor = ({ onCreate }) => {
   return (
     <div className="flex justify-between h-24 pb-16 border-b text-sm">
       <input
-        className="w-9/12 border rounded p-2"
-        placeholder="추가할 todo를 입력해주세요."
-        value={content}
         onChange={onChangeContent}
-        onKeyDown={onKeyDown}
+        value={content}
+        className="w-9/12 border rounded p-2"
+        placeholder="추가할 todo를 입력해주세요"
         ref={contentRef}
+        onKeyDown={onKeyDown}
       />
       <button
-        className="border rounded-3xl px-4 bg-neutral-500 text-white"
         onClick={onSubmit}
+        className="border rounded-3xl px-4 bg-neutral-500 text-white"
       >
         추가
       </button>
     </div>
   );
-};
-
-Editor.propTypes = {
-  onCreate: PropTypes.func.isRequired,
 };
 
 export default Editor;

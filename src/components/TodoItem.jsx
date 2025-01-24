@@ -1,29 +1,40 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { TodoContext } from "../App";
 
-const TodoItem = ({ id, isDone, content, date, onUpdate }) => {
+const TodoItem = ({ todo }) => {
+  const { onUpdate, onDelete } = useContext(TodoContext);
   const onChangeCheckbox = () => {
-    onUpdate(id);
+    onUpdate(todo.id);
   };
+  const onClickDelete = () => {
+    onDelete(todo.id);
+  };
+
   return (
     <div className="flex items-center justify-between h-8 text-sm">
       <div className="flex items-center gap-2">
         <input
           type="checkbox"
-          checked={isDone}
-          className="w-5 h-5"
           onChange={onChangeCheckbox}
+          checked={todo.isDone}
         />
-        <div className="text-lg">{content}</div>
+        <div className="text-lg">{todo.content}</div>
       </div>
-      <div className="text-gray-600">{date}</div>
-      <button className="border rounded-3xl px-4 h-full bg-neutral-300 text-white text-xs">
-        삭제
-      </button>
+      <div className="flex items-center gap-2">
+        <div className="text-gray-600">{todo.date}</div>
+        <button
+          onClick={onClickDelete}
+          className="border rounded-3xl px-4 py-1 h-full bg-neutral-300 text-white text-xs"
+        >
+          삭제
+        </button>
+      </div>
     </div>
   );
 };
 TodoItem.propTypes = {
-  todos: PropTypes.object.isRequired,
+  todo: PropTypes.object.isRequired,
 };
 
 export default TodoItem;
