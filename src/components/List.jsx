@@ -4,6 +4,7 @@ import { TodoContext } from "../App";
 
 const List = () => {
   const { todos } = useContext(TodoContext);
+
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {
@@ -29,6 +30,7 @@ const List = () => {
       />
       {filteredTodos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} />; // 스프레드 연산자 ...
+
       })}
     </div>
   );

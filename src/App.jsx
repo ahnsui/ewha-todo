@@ -4,9 +4,11 @@ import Editor from "./components/Editor";
 import List from "./components/List";
 import { getDate } from "./utils/getDate";
 import { useState, useRef, useEffect } from "react";
+
 import { createContext } from "react";
 
 export const TodoContext = createContext();
+
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -67,6 +69,7 @@ function App() {
         <Editor />
         <List />
       </TodoContext.Provider>
+
     </div>
   );
 }

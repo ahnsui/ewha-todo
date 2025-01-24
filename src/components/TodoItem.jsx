@@ -11,6 +11,16 @@ const TodoItem = ({ todo }) => {
     onDelete(todo.id);
   };
 
+import PropTypes from "prop-types";
+
+const TodoItem = ({ todo, onUpdate, onDelete }) => {
+  const onChangeCheckbox = () => {
+    onUpdate(todo.id);
+  };
+  const onClickDelete = () => {
+    onDelete(todo.id);
+  };
+
   return (
     <div className="flex items-center justify-between h-8 text-sm">
       <div className="flex items-center gap-2">
@@ -35,6 +45,8 @@ const TodoItem = ({ todo }) => {
 };
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default TodoItem;
