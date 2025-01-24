@@ -1,13 +1,15 @@
 import TodoItem from "./TodoItem";
-import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TodoContext } from "../App";
 
-const List = ({ todos, onUpdate }) => {
+const List = () => {
+  const { todos } = useContext(TodoContext);
+
   const [search, setSearch] = useState("");
+
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
   };
-  console.log(search);
 
   const getFilteredList = () => {
     if (search === "") return todos;
@@ -21,13 +23,15 @@ const List = ({ todos, onUpdate }) => {
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold">Todo List</h1>
       <input
-        className="w-full border rounded p-2 h-7 text-xss"
-        placeholder="검색할 todo를 입력해주세요."
+
         value={search}
         onChange={onChangeSearch}
+        className="w-full border rounded p-2 h-7 text-xs"
+        placeholder="검색할 todo를 입력해주세요."
       />
       {filteredTodos.map((todo) => {
-        return <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />;
+        return <TodoItem key={todo.id} todo={todo} />; // 스프레드 연산자 ...
+
       })}
     </div>
   );
